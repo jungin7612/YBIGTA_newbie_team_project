@@ -7,6 +7,9 @@ from app.user.user_router import user
 from app.config import PORT
 from fastapi.middleware.cors import CORSMiddleware
 
+'''
+rejected test용용
+'''
 
 app = FastAPI()
 app.add_middleware(
