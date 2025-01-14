@@ -8,7 +8,7 @@ from app.config import PORT
 from fastapi.middleware.cors import CORSMiddleware
 
 '''
-rejected test용용 third try
+rejected test용용 fourth try
 
 이번에는 될 것인가
 '''
