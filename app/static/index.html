@@ -141,7 +141,7 @@
         function updatePassword() {
             const newPassword = document.getElementById('update-password').value;
 
-            fetch('/api/user/update-password', {
+            fetch('http://localhost:8000/api/user/update-password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -164,7 +164,7 @@
                 return;
             }
 
-            fetch('/api/user/delete', {
+            fetch('http://localhost:8000/api/user/delete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
