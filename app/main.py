@@ -8,7 +8,7 @@ from app.config import PORT
 from fastapi.middleware.cors import CORSMiddleware
 
 '''
-rejected test용용
+rejected test용용 second try
 '''
 
 app = FastAPI()
