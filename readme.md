@@ -38,11 +38,11 @@
 ### 🙌 함께 성장하는 베이스라인즈 (BaseLines)팀이 되길 기대합니다!
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-    <img src="github/branch_protection.png" height="120px" width="180px">
-    <img src="github/merged_jungin7612.png" height="120px" width="180px">
-    <img src="github/merged_SungWoojae.png" height="120px" width="180px">
-    <img src="github/merged_yonseistatking.png" height="120px" width="180px">
-    <img src="github/push_rejected.png" height="120px" width="180px">
+    <img src="github/branch_protection.png" height="120px" width="150px">
+    <img src="github/merged_jungin7612.png" height="120px" width="150px">
+    <img src="github/merged_SungWoojae.png" height="120px" width="150px">
+    <img src="github/merged_yonseistatking.png" height="120px" width="150px">
+    <img src="github/push_rejected.png" height="120px" width="150px">
 </div>
 
 # YBIGTA Newbie Team Project 실행 방법
