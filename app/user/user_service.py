@@ -1,11 +1,11 @@
 from app.user.user_repository import UserRepository
 from app.user.user_schema import User, UserLogin, UserUpdate
-from typing import List, Dict,Optional
+from typing import Dict
 
 
 class UserService:
-    def __init__(self, userRepoitory: UserRepository) -> None:
-        self.repo = userRepoitory
+    def __init__(self, user_repository: UserRepository) -> None:
+        self.repo = user_repository
 
     def login(self, user_login: UserLogin) -> User:
         """
@@ -24,50 +24,37 @@ class UserService:
         # 사용자 데이터 로드
         users_list: Dict[str, Dict[str, str]] = self.repo._load_users()
 
-        # 이메일 및 비밀번호 확인 플래그
-        email_signal: bool = False
-        pw_signal: bool = False
+        # 사용자 검색 및 검증
+        for user in users_list.values():
+            if user["email"] == user_login.email:
+                if user["password"] == user_login.password:
+                    return User(email=user["email"], password=user["password"], username=user["username"])
+                else:
+                    raise ValueError("Invalid password")
 
-        # 사용자 검색
-        for user in users_list.values():  # users_list는 딕셔너리 형태로 로드됩니다
-            if user["email"] == user_login.email and user["password"] != user_login.password:
-                email_signal = True
-            if user["email"] == user_login.email and user["password"] == user_login.password:
-                email_signal = True
-                pw_signal = True
-                # User 객체 생성 및 반환
-                return User(email=user["email"], password=user["password"], username=user["username"])
+        raise ValueError("User not found")
 
-        # 이메일 또는 비밀번호가 일치하지 않을 경우 예외 처리
-        if not email_signal:
-            raise ValueError("User not found")
-        if not pw_signal:
-            raise ValueError("Invalid password")
-
-        
-        
-        
     def register_user(self, new_user: User) -> User:
-            """
-            새로운 사용자를 등록합니다.
+        """
+        새로운 사용자를 등록합니다.
 
-            Args:
-                new_user (User): 등록하려는 사용자 객체. 이메일(email), 비밀번호(password), 사용자 이름(username) 등을 포함.
+        Args:
+            new_user (User): 등록하려는 사용자 객체. 이메일(email), 비밀번호(password), 사용자 이름(username) 등을 포함.
 
-            Returns:
-                User: 등록된 사용자 객체.
+        Returns:
+            User: 등록된 사용자 객체.
 
-            Raises:
-                ValueError: 사용자가 이미 존재하는 경우 ("User already exists").
-            """
-            # 이미 존재하는 사용자 확인
-            if self.repo.get_user_by_email(new_user.email):
-                raise ValueError("User already exists")
+        Raises:
+            ValueError: 사용자가 이미 존재하는 경우 ("User already exists").
+        """
+        # 이미 존재하는 사용자 확인
+        if self.repo.get_user_by_email(new_user.email):
+            raise ValueError("User already exists")
 
-            # 사용자 저장
-            self.repo.save_user(new_user)
+        # 사용자 저장
+        self.repo.save_user(new_user)
 
-            return new_user
+        return new_user
 
     def delete_user(self, email: str) -> User:
         """
@@ -86,13 +73,12 @@ class UserService:
         deleted_user = self.repo.get_user_by_email(email)
         if not deleted_user:
             raise ValueError("User not Found")
-        
+
         # 사용자 삭제
         self.repo.delete_user(deleted_user)
         return deleted_user
 
     def update_user_pwd(self, user_update: UserUpdate) -> User:
-        ## TODO
         """
         사용자의 이메일을 기반으로 비밀번호를 업데이트합니다.
 
@@ -105,12 +91,13 @@ class UserService:
         Raises:
             ValueError: 지정된 이메일의 사용자가 존재하지 않을 경우.
         """
-        users_list = self.repo._load_users()
-        if user_update.email not in users_list:
-            raise ValueError("User not Found")
+        # 사용자 데이터 로드
         user = self.repo.get_user_by_email(user_update.email)
+        if not user:
+            raise ValueError("User not Found")
+
+        # 비밀번호 업데이트
         user.password = user_update.new_password
         self.repo.save_user(user)
-        updated_user = self.repo.get_user_by_email(user_update.email)
-        return updated_user
-        
+
+        return user

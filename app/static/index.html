@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
             align-items: center;
             min-height: 100vh;
         }
+
         /* 컨테이너 스타일 */
         .container {
             max-width: 400px;
@@ -28,26 +30,31 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
+
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #6a11cb;
         }
+
         h2 {
             font-size: 20px;
             margin-bottom: 15px;
             color: #2575fc;
         }
+
         /* 로고 스타일 */
         .logo {
             width: 100px;
             height: auto;
             margin: 20px auto;
         }
+
         /* 폼 스타일 */
         form {
             margin: 20px 0;
         }
+
         input {
             padding: 10px;
             margin: 10px 0;
@@ -57,6 +64,7 @@
             border-radius: 8px;
             box-sizing: border-box;
         }
+
         /* 버튼 스타일 */
         button {
             padding: 12px 20px;
@@ -70,30 +78,36 @@
             color: #fff;
             transition: background 0.3s, transform 0.2s;
         }
+
         button:hover {
             background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
             transform: scale(1.05);
         }
+
         /* 섹션 스타일 */
         .section {
             margin-bottom: 30px;
         }
+
         /* 숨김 클래스 */
         .hidden {
             display: none;
         }
+
         /* 반응형 디자인 */
         @media (max-width: 768px) {
             .container {
                 width: 90%;
                 padding: 20px;
             }
+
             h1 {
                 font-size: 20px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container" id="login-screen">
         <img src="https://raw.githubusercontent.com/YBIGTA/.github/master/profile/logo.png" alt="Logo" class="logo">
@@ -149,19 +163,19 @@
                 },
                 body: JSON.stringify({ email, password })
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(error => { throw new Error(error.detail); });
-                }
-                return response.json();
-            })
-            .then(data => {
-                userEmail = email; // 로그인 성공 시 이메일 저장
-                document.getElementById('username').textContent = data.username; // 사용자 이름 표시
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('logged-in-screen').classList.remove('hidden');
-            })
-            .catch(error => alert(`Login failed: ${error.message}`));
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw new Error(error.detail); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    userEmail = email; // 로그인 성공 시 이메일 저장
+                    document.getElementById('username').textContent = data.username; // 사용자 이름 표시
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('logged-in-screen').classList.remove('hidden');
+                })
+                .catch(error => alert(`Login failed: ${error.message}`));
         }
 
         // 사용자 등록 함수
@@ -177,14 +191,14 @@
                 },
                 body: JSON.stringify({ email, password, username })
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(error => { throw new Error(error.detail); });
-                }
-                return response.json();
-            })
-            .then(() => alert(`Registration successful! Welcome, ${username}.`)) // 성공 메시지에 사용자 이름 표시
-            .catch(error => alert(`Registration failed: ${error.message}`));
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw new Error(error.detail); });
+                    }
+                    return response.json();
+                })
+                .then(() => alert(`Registration successful! Welcome, ${username}.`)) // 성공 메시지에 사용자 이름 표시
+                .catch(error => alert(`Registration failed: ${error.message}`));
         }
 
         // 비밀번호 업데이트 함수
@@ -198,14 +212,14 @@
                 },
                 body: JSON.stringify({ email: userEmail, new_password: newPassword })
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(error => { throw new Error(error.detail); });
-                }
-                return response.json();
-            })
-            .then(() => alert(`Password successfully updated!`)) // 성공 메시지
-            .catch(error => alert(`Password update failed: ${error.message}`));
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw new Error(error.detail); });
+                    }
+                    return response.json();
+                })
+                .then(() => alert(`Password successfully updated!`)) // 성공 메시지
+                .catch(error => alert(`Password update failed: ${error.message}`));
         }
 
         // 사용자 삭제 함수
@@ -222,22 +236,21 @@
                 },
                 body: JSON.stringify({ email: userEmail }) // 저장된 이메일 전송
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(error => { throw new Error(error.detail); });
-                }
-                return response.json();
-            })
-            .then(() => {
-                alert(`User deleted successfully!`);
-                document.getElementById('logged-in-screen').classList.add('hidden');
-                document.getElementById('login-screen').classList.remove('hidden');
-                userEmail = null; // 이메일 초기화
-            })
-            .catch(error => alert(`Account deletion failed: ${error.message}`));
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => { throw new Error(error.detail); });
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    alert(`User deleted successfully!`);
+                    document.getElementById('logged-in-screen').classList.add('hidden');
+                    document.getElementById('login-screen').classList.remove('hidden');
+                    userEmail = null; // 이메일 초기화
+                })
+                .catch(error => alert(`Account deletion failed: ${error.message}`));
         }
     </script>
 </body>
+
 </html>
-
-
