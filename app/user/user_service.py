@@ -93,6 +93,24 @@ class UserService:
 
     def update_user_pwd(self, user_update: UserUpdate) -> User:
         ## TODO
-        updated_user = None
+        """
+        사용자의 이메일을 기반으로 비밀번호를 업데이트합니다.
+
+        Args:
+            user_update (UserUpdate): 사용자의 이메일과 새 비밀번호를 포함하는 객체.
+
+        Returns:
+            User: 새 비밀번호로 업데이트된 사용자 객체.
+
+        Raises:
+            ValueError: 지정된 이메일의 사용자가 존재하지 않을 경우.
+        """
+        users_list = self.repo._load_users()
+        if user_update.email not in users_list:
+            raise ValueError("User not Found")
+        user = self.repo.get_user_by_email(user_update.email)
+        user.password = user_update.new_password
+        self.repo.save_user(user)
+        updated_user = self.repo.get_user_by_email(user_update.email)
         return updated_user
         

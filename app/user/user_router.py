@@ -33,10 +33,14 @@ def delete_user(user_delete_request: UserDeleteRequest, service: UserService = D
         delete_user = service.delete_user(user_delete_request.email)
         return BaseResponse(status="success", data=delete_user, message="User Deletion Success")
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=404, detail=str(e))
 
 
 @user.put("/update-password", response_model=BaseResponse[User], status_code=status.HTTP_200_OK)
 def update_user_password(user_update: UserUpdate, service: UserService = Depends(get_user_service)) -> BaseResponse[User]:
     # TODO
-    return None
+    try:
+        update_user=service.update_user_pwd(user_update)
+        return BaseResponse(status="success", data=update_user, message="User password update success.")
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
