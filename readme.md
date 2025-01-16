@@ -38,46 +38,39 @@
 ### 🙌 함께 성장하는 팀이 되길 기대합니다!
 
 ---
-![이미지 1 설명](github/branch_protected.png)
-![이미지 1 설명](github/merged_jungin7612.png)
-![이미지 1 설명](github/merged_SungWoojae.png)
-![이미지 1 설명](github/merged_yonseistatking.png)
-![이미지 1 설명](github/push_rejected.png)
-
-아래는 해당 프로젝트를 로컬 환경에서 실행하기 위한 절차입니다:
+<img src="github/branch_protected.png", height="100px", width="100px">
+<img src="github/merged_jungin7612.png", height="100px", width="100px">
+<img src="github/merged_SungWoojae.png", height="100px", width="100px">
+<img src="github/merged_yonseistatking.png", height="100px", width="100px">
+<img src="github/push_rejected.png", height="100px", width="100px">
 
 
 # YBIGTA Newbie Team Project 실행 방법
 
-설치 방법
-Python 버전 확인
-Python 3.7 이상(또는 프로젝트에서 권장하는 버전)을 사용 중인지 확인합니다.
 
-가상 환경(옵션)
-원활한 패키지 관리를 위해 가상 환경 사용을 권장합니다.
+## 설치 방법
+1. **Python 버전 확인**  
+   Python 3.7 이상(또는 프로젝트에서 권장하는 버전)을 사용 중인지 확인합니다.
 
-bash
-코드 복사
-# 가상환경 생성 예시
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
-# 또는 venv\Scripts\activate  # Windows
-프로젝트 종속 라이브러리 설치
-프로젝트 루트 디렉토리(YBIGTA_newbie_team_project)에서 다음 명령어를 실행합니다.
+2. **가상 환경(옵션)**  
+   원활한 패키지 관리를 위해 가상 환경 사용을 권장합니다.
+   ```bash
+   # 가상환경 생성 예시
+   python -m venv venv
+   source venv/bin/activate  # Mac/Linux
+   # 또는 venv\Scripts\activate  # Windows
 
-bash
-코드 복사
-pip install -r requirements.txt
-혹은 패키지 관리 도구에 따라 적합한 명령어를 사용하세요.
-
-<br>
-실행 방법
-Uvicorn을 사용한 실행
-가장 간단한 실행 방법은 uvicorn 명령어를 이용하는 것입니다.
-
-bash
-코드 복사
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-app.main:app은 app 폴더 내부의 main.py에서 FastAPI 인스턴스가 app이라는 이름으로 선언되어 있음을 가정합니다.
---reload는 개발 편의를 위해 코드 변경 시 자동으로 서버를 재시작합니다.
---host와 --port는 원하는 IP 주소와 포트를 지정할 수 있습니다(기본은 127.0.0.1:8000).
+3. **프로젝트 종속 라이브러리 설치**  
+   프로젝트 루트 디렉토리(`YBIGTA_newbie_team_project`)에서 다음 명령어를 실행합니다.
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. 실행 방법
+   **Uvicorn을 사용한 실행**  
+   가장 간단한 실행 방법은 uvicorn 명령어를 이용하는 것입니다.
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+   - `app.main:app`은 `app` 폴더 내부의 `main.py`에서 FastAPI 인스턴스가 `app`이라는 이름으로 선언되어 있음을 가정합니다.
+   - `--reload`는 개발 편의를 위해 코드 변경 시 자동으로 서버를 재시작합니다.
+   - `--host`와 `--port`는 원하는 IP 주소와 포트를 지정할 수 있습니다(기본은 `127.0.0.1:8000`).
