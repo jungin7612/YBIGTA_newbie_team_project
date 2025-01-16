@@ -35,55 +35,49 @@
 
 ---
 
-### 🙌 함께 성장하는 DA팀이 되길 기대합니다!
+### 🙌 함께 성장하는 팀이 되길 기대합니다!
 
-<img src="./github/branch_protected.png", height="100px", width="100px">
-<img src="./github/merged_jungin7612.png", height="100px", width="100px">
-<img src="./github/merged_SungWoojae.png", height="100px", width="100px">
-<img src="./github/merged_yonseistatking.png", height="100px", width="100px">
-<img src="./github/push_rejected.png", height="100px", width="100px">
+---
+![이미지 1 설명](github/branch_protected.png)
+![이미지 1 설명](github/merged_jungin7612.png)
+![이미지 1 설명](github/merged_SungWoojae.png)
+![이미지 1 설명](github/merged_yonseistatking.png)
+![이미지 1 설명](github/push_rejected.png)
 
 아래는 해당 프로젝트를 로컬 환경에서 실행하기 위한 절차입니다:
 
-markdown
-코드 복사
+
 # YBIGTA Newbie Team Project 실행 방법
 
-## 1. 저장소 클론
+설치 방법
+Python 버전 확인
+Python 3.7 이상(또는 프로젝트에서 권장하는 버전)을 사용 중인지 확인합니다.
 
-먼저, 터미널에서 해당 프로젝트를 로컬로 클론합니다:
-
-```bash
-git clone https://github.com/jungin7612/YBIGTA_newbie_team_project.git
-cd YBIGTA_newbie_team_project
-2. 가상 환경 설정
-프로젝트의 의존성을 격리하기 위해 가상 환경을 생성하고 활성화합니다:
+가상 환경(옵션)
+원활한 패키지 관리를 위해 가상 환경 사용을 권장합니다.
 
 bash
 코드 복사
-# 가상 환경 생성
+# 가상환경 생성 예시
 python -m venv venv
-
-# 가상 환경 활성화 (Windows)
-venv\Scripts\activate
-
-# 가상 환경 활성화 (macOS/Linux)
-source venv/bin/activate
-3. 의존성 설치
-requirements.txt 파일을 통해 필요한 패키지를 설치합니다:
+source venv/bin/activate  # Mac/Linux
+# 또는 venv\Scripts\activate  # Windows
+프로젝트 종속 라이브러리 설치
+프로젝트 루트 디렉토리(YBIGTA_newbie_team_project)에서 다음 명령어를 실행합니다.
 
 bash
 코드 복사
 pip install -r requirements.txt
+혹은 패키지 관리 도구에 따라 적합한 명령어를 사용하세요.
 
-4. 애플리케이션 실행 (Uvicorn 사용)
-FastAPI 애플리케이션을 실행하기 위해 Uvicorn을 사용합니다:
+<br>
+실행 방법
+Uvicorn을 사용한 실행
+가장 간단한 실행 방법은 uvicorn 명령어를 이용하는 것입니다.
 
 bash
 코드 복사
-# 서버 실행 명령어
-uvicorn app.main:app --reload --host=0.0.0.0 --port=8000
-app.main:app은 app 디렉토리의 main.py 파일 내에 정의된 FastAPI 인스턴스를 가리킵니다. 프로젝트 구조에 따라 경로를 조정해야 할 수 있습니다.
---reload 옵션은 코드 변경 시 자동으로 서버를 재시작하도록 합니다. 개발 환경에서 유용합니다.
---host와 --port 옵션은 서버의 호스트와 포트를 지정합니다. 필요에 따라 조정 가능합니다.
-이후 웹 브라우저에서 http://localhost:8000으로 접속하여 애플리케이션을 확인할 수 있습니다.
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+app.main:app은 app 폴더 내부의 main.py에서 FastAPI 인스턴스가 app이라는 이름으로 선언되어 있음을 가정합니다.
+--reload는 개발 편의를 위해 코드 변경 시 자동으로 서버를 재시작합니다.
+--host와 --port는 원하는 IP 주소와 포트를 지정할 수 있습니다(기본은 127.0.0.1:8000).
