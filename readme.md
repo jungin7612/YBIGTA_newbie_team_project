@@ -1,4 +1,4 @@
-# 🛠️ 팀 팀원 자기소개 🛠️
+# 🛠️ 베이스라인즈 (BaseLines)팀 팀원 자기소개 🛠️
 
 ---
 
@@ -35,14 +35,14 @@
 
 ---
 
-### 🙌 함께 성장하는 팀이 되길 기대합니다!
+### 🙌 함께 성장하는 베이스라인즈 (BaseLines)팀이 되길 기대합니다!
 
 ---
-<img src="github/branch_protected.png", height="100px", width="100px">
-<img src="github/merged_jungin7612.png", height="100px", width="100px">
-<img src="github/merged_SungWoojae.png", height="100px", width="100px">
-<img src="github/merged_yonseistatking.png", height="100px", width="100px">
-<img src="github/push_rejected.png", height="100px", width="100px">
+<img src="github/branch_protected.png" height="100px" width="100px">
+<img src="github/merged_jungin7612.png"  height="100px" width="100px">
+<img src="github/merged_SungWoojae.png" height="100px" width="100px">
+<img src="github/merged_yonseistatking.png" height="100px" width="100px">
+<img src="github/push_rejected.png" height="100px" width="100px">
 
 
 # YBIGTA Newbie Team Project 실행 방법
