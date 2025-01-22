@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\wjpan\Desktop\학교자료\YBIGTA 25-1\과제\3회차(0110 세션)\YBIGTA_newbie_team_project\myvenv
+set VIRTUAL_ENV=C:\Users\Sungwoojae\Desktop\YBIGTA_newbie_team_project\myvenv
 
 if not defined PROMPT set PROMPT=$P$G
 
