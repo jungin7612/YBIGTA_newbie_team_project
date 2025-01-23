@@ -9,9 +9,9 @@ from review_analysis.crawling.diningcode_crawler import DiningCodeCrawler
 # 모든 크롤링 클래스를 예시 형식으로 적어주세요.
 CRAWLER_CLASSES: Dict[str, Type[BaseCrawler]] = {
     "Naver": NaverCrawler,
-    # "kakao": KakaoCrawler,
-    # "googlemaps": GoogleMapsCrawler,
-    # "diningcode": DiningCodeCrawler,
+    "kakao": KakaoCrawler,
+    "googlemaps": GoogleMapsCrawler,
+    "diningcode": DiningCodeCrawler,
 }
 
 
