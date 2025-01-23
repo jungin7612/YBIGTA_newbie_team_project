@@ -86,17 +86,19 @@ class NaverCrawler(BaseCrawler):
         previous_review_count: int = 0
 
         try:
-            iframe = self.driver.find_element(By.ID, 'entryIframe')
+            iframe = WebDriverWait(self.driver, 15).until(
+                EC.presence_of_element_located((By.ID, 'entryIframe'))
+            )
             self.driver.switch_to.frame(iframe)
             logger.info("iframe 전환 성공")
 
             while True:
                 try:
                     WebDriverWait(self.driver, 15).until(
-                        EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.pui__X35jYm.place_apply_pui.EjjAW'))
+                        EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.place_apply_pui.EjjAW'))
                     )
                     soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-                    reviews = soup.select('li.pui__X35jYm.place_apply_pui.EjjAW')
+                    reviews = soup.select('li.place_apply_pui.EjjAW')
 
                     if len(reviews) <= previous_review_count:
                         logger.info(f"새로운 리뷰 없음. 현재 리뷰 수: {len(reviews)}, 이전 리뷰 수: {previous_review_count}")
