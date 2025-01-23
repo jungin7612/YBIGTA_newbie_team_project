@@ -109,7 +109,7 @@
 ### 2. 크롤러 실행
 1. main.py 실행:
    ```bash
-   python ./review_analysis/crawling/main.py
+   PYTHONPATH=. python ./review_analysis/crawling/main.py -d database -c Naver  # -c Naver 대신 -a 실행도 가능
    ```
 2. 크롤러는 네이버 리뷰 데이터를 자동으로 수집하고 지정된 `output_dir`에 저장합니다.
 
