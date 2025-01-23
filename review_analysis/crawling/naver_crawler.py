@@ -1,5 +1,5 @@
 from review_analysis.crawling.base_crawler import BaseCrawler
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # type: ignore
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import pandas as pd
+import pandas as pd # type: ignore
 import time
 import os
 
@@ -19,7 +19,26 @@ from utils.logger import setup_logger  # logger.py import
 logger = setup_logger(log_file="crawler.log")
 
 class NaverCrawler(BaseCrawler):
+    """
+    Naver Map 리뷰 크롤러 클래스로, 특정 장소의 리뷰를 수집하고 저장하는 기능을 제공합니다.
+
+    이 클래스는 Selenium WebDriver를 사용하여 동적 웹 페이지에서 리뷰를 추출하고,
+    수집된 리뷰 데이터를 CSV 파일로 저장합니다.
+
+    속성:
+        output_dir (str): 크롤링된 리뷰를 저장할 디렉토리 경로
+        base_url (str): 크롤링할 네이버 맵 장소 리뷰 페이지 URL
+        reviews (List[pd.DataFrame]): 크롤링된 리뷰 데이터를 저장하는 DataFrame 리스트
+        driver (Optional[webdriver.Chrome]): Selenium WebDriver 인스턴스
+    """
+
     def __init__(self, output_dir: str):
+        """
+        NaverCrawler 클래스의 생성자입니다.
+
+        Args:
+            output_dir (str): 크롤링된 리뷰를 저장할 디렉토리 경로
+        """
         super().__init__(output_dir)
         self.base_url: str = 'https://map.naver.com/p/entry/place/21306384?c=15.00,0,0,0,dh&placePath=/review'
         self.reviews: List[pd.DataFrame] = []
@@ -27,6 +46,12 @@ class NaverCrawler(BaseCrawler):
         logger.info("NaverCrawler initialized with output_dir: %s", output_dir)
 
     def start_browser(self) -> None:
+        """
+        Chrome WebDriver를 초기화하고 지정된 네이버 맵 리뷰 페이지를 엽니다.
+
+        Raises:
+            Exception: 브라우저 시작 중 오류가 발생한 경우
+        """
         try:
             chrome_options = Options()
             self.driver = webdriver.Chrome(options=chrome_options)
@@ -38,6 +63,18 @@ class NaverCrawler(BaseCrawler):
             raise
 
     def scrape_reviews(self) -> None:
+        """
+        네이버 맵 리뷰 페이지에서 리뷰를 크롤링하여 수집합니다.
+
+        - iframe 내부로 전환 후 리뷰 데이터 추출
+        - 중복된 리뷰 제거
+        - 리뷰 텍스트, 날짜, 평점 추출
+        - '더보기' 버튼을 통해 추가 리뷰 로딩
+
+        Raises:
+            RuntimeError: WebDriver가 초기화되지 않은 경우
+            Exception: 크롤링 중 발생하는 다양한 예외 상황
+        """
         if not self.driver:
             logger.error("Driver is not initialized. Call `start_browser()` first.")
             raise RuntimeError("Driver is not initialized. Call `start_browser()` first.")
@@ -136,6 +173,16 @@ class NaverCrawler(BaseCrawler):
             logger.error(f"iframe 전환 실패 또는 크롤링 오류 발생: {str(e)}")
     
     def save_to_database(self) -> None:
+        """
+        크롤링된 리뷰 데이터를 CSV 파일로 저장합니다.
+
+        - 크롤링된 모든 리뷰를 단일 DataFrame으로 병합
+        - 출력 디렉토리가 존재하지 않을 경우 생성
+        - UTF-8-SIG 인코딩으로 CSV 파일 저장
+
+        Raises:
+            Exception: 데이터 저장 중 오류가 발생한 경우
+        """
         if not self.reviews:
             logger.warning("저장할 리뷰 데이터가 없습니다. 크롤링 데이터를 확인하세요.")
             return
@@ -151,4 +198,3 @@ class NaverCrawler(BaseCrawler):
             logger.info(f"리뷰 데이터가 성공적으로 저장되었습니다: {output_path}")
         except Exception as e:
             logger.error(f"데이터 저장 중 오류 발생: {str(e)}")
-

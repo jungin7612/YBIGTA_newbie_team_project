@@ -41,6 +41,7 @@ class KakaoCrawler:
     - save_to_database(): 리뷰 데이터 CSV 파일로 저장
     """
 
+
     def __init__(self, output_dir: str):
         self.base_url = 'https://place.map.kakao.com/1011256721'
         self.driver = None
