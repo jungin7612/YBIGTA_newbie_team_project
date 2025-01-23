@@ -81,19 +81,19 @@
    - `--reload`는 개발 편의를 위해 코드 변경 시 자동으로 서버를 재시작합니다.
    - `--host`와 `--port`는 원하는 IP 주소와 포트를 지정할 수 있습니다(기본은 `127.0.0.1:8000`).
 
-# NaverCrawler
+# Crawler 실행방법
 
-이 프로젝트는 네이버 리뷰 데이터를 크롤링하여 CSV 파일로 저장하는 Python 기반의 크롤링 도구입니다. Selenium과 BeautifulSoup을 활용하여 데이터 수집 및 처리 과정을 자동화합니다.
+이 프로젝트는 네이버, 구글, 카카오, 다이닝코드의 '파이홀' 매장 리뷰 데이터를 크롤링하여 CSV 파일로 저장하는 Python 기반의 크롤링 도구입니다. Selenium과 BeautifulSoup을 활용하여 데이터 수집 및 처리 과정을 자동화합니다.
 
 ---
 
 ## 데이터 소개
-- **크롤링한 사이트**: [네이버 지도 리뷰 페이지](https://map.naver.com/p/entry/place/21306384?c=15.00,0,0,0,dh&placePath=/review)
+- **크롤링한 사이트**: [네이버 지도 리뷰 페이지](https://map.naver.com/p/entry/place/21306384?c=15.00,0,0,0,dh&placePath=/review), [구글 리뷰 페이지](https://www.google.com/maps/place/%ED%8C%8C%EC%9D%B4%ED%99%80/data=!4m18!1m9!3m8!1s0x357c98949e1b2c2f:0x3d05b9bcbf909f3!2z7YyM7J207ZmA!8m2!3d37.5570004!4d126.9350473!9m1!1b1!16s%2Fg%2F1hc4q16_8!3m7!1s0x357c98949e1b2c2f:0x3d05b9bcbf909f3!8m2!3d37.5570004!4d126.9350473!9m1!1b1!16s%2Fg%2F1hc4q16_8?hl=ko&entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D) [다이닝코드 리뷰 페이지](https://www.diningcode.com/profile.php?rid=ZKUECqHgsTki) [카카오 리뷰 페이지](https://place.map.kakao.com/1011256721)
 - **데이터 형식**: 
 - `text` (리뷰 내용, 문자열)
 - `date` (작성 날짜, `YYYY-MM-DD` 형식의 문자열)
 - `rating` (별점, 문자열 또는 숫자)  # 별점의 경우 네이버리뷰는 2021년 10월부터 폐지. 따라서 그 이후의 리뷰들은 별점이 없음.
-- **데이터 개수**: 수집 가능한 모든 리뷰 (사이트 내 더보기 버튼을 통해 스크롤) - 1429개
+- **데이터 개수**: 수집 가능한 모든 리뷰 (사이트 내 더보기 버튼을 통해 스크롤) - 네이버: 1429개, 카카오: 377개, 다이닝코드: 59개, 구글맵스:340개 
 
 ---
 
@@ -113,14 +113,14 @@
 ### 2. 크롤러 실행
 1. main.py 실행:
    ```bash
-   PYTHONPATH=. python ./review_analysis/crawling/main.py -d database -c Naver  # -c Naver 대신 -a 실행도 가능
+   PYTHONPATH=. python ./review_analysis/crawling/main.py -d database -a 
    ```
-2. 크롤러는 네이버 리뷰 데이터를 자동으로 수집하고 지정된 `output_dir`에 저장합니다.
+2. 크롤러는 리뷰 데이터를 자동으로 수집하고 지정된 `output_dir`에 저장합니다.
 
 ---
 
 ## 결과물
-- **결과 파일**: `reviews_naver.csv`
+- **결과 파일**: `reviews_naver.csv`, `reviews_kakaomap.csv`, `reviews_googlemaps.csv`, `reviews_diningcode.csv`
 - **파일 위치**: `./database/` 디렉토리 (코드에서 설정 가능)
 - **데이터 샘플**:
    ```csv
