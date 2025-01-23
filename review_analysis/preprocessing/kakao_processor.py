@@ -3,7 +3,7 @@
 import pandas as pd
 import os
 from review_analysis.preprocessing.base_processor import BaseDataProcessor
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoTokenizer, AutoModel  # type: ignore
 import torch
 import numpy as np
 
