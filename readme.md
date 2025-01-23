@@ -157,3 +157,24 @@
 3. FE
 - 추후 진행할 시계열 분석의 용이성을 위해 날짜에서 월만 추출하여 month 열을 새롭게 생성했음
 - 한국 comment에 fine tuning된 BERT인 KcBERT를 통해 리뷰 텍스트를 벡터화했음. 이를 vector라는 열에 할당해주었음.
+
+---
+
+# 텍스트 비교 분석 : KNN을 활용한 별점 없는 네이버 리뷰의 별점 예측 모델
+
+1. 카카오, 다이닝코드, 구글맵스, 네이버리뷰(별점 있는 것)의 리뷰 텍스트를 KcBERT를 통해 텍스트 벡터화
+2. KNN 모델 학습
+3. K=5로 해서 별점이 없는 네이버리뷰의 별점을 예측 => ./database/Test_Dataset_with_Predicted_Ratings.csv
+![KNN 예측 결과](./review_analysis/plots/KNN_prediction.png)
+
+---
+
+# 시계열 분석 : 월별 리뷰 개수 추이
+![월별 리뷰 개수 추이](./review_analysis/plots/monthly_review_cnt.png)
+- 모든 리뷰를 월별로 그룹핑하여 월별 리뷰 개수 추이를 분석
+- 1,2, 11, 12월에 전체적인 리뷰 개수가 가장 많았음
+- 파이가 겨울 간식..인가..?
+![각 사이트 월별 리뷰 개수 추이](./review_analysis/plots/monthly_review_cnt_each.png)
+- 크롤링된 리뷰 개수는 네이버 - 카카오 - 다이닝코드 순
+- 카카오와 네이버는 1월, 12월에 가까울수록 비교적 리뷰 개수 많은 것으로 보임
+- 다이닝코드는 리뷰 수도 많지 않고 추세도 평탄함
