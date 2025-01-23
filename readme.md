@@ -239,16 +239,18 @@
 
 ---
 
-#다이닝 코드 개별 사이트 EDA
+# 다이닝 코드 개별 사이트 EDA
 
-##다이닝 코드 EDA 사진자료
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-    <img src="review_analysis/plots/diningcode_star.png" height="120px" width="150px">
-    <img src="review_analysis/plots/diningcode_textlength.png" height="120px" width="150px">
-    <img src="review_analysis/plots/diningcode_stat.png" height="120px" width="150px">
+## 다이닝 코드 EDA 사진자료
+
+![다이닝 코드 리뷰텍스트 길이](./review_analysis/plots/diningcode_textlength.png)
+
+![다이닝 코드 별점 분포](./review_analysis/plots/diningcode_star.png)
+
+![다이닝 코드 데이터 통계](./review_analysis/plots/diningcode_stat.png)
 
 ---
-#다이닝 코드 분석
+# 다이닝 코드 분석
 1. 별점이 최솟값 3으로 상향평준화 되어있다. 그럼에도 별점5점이 많아서 SVM, KNN의 결과가 비정상적이라면 별점5점인 데이터들을 줄일 필요가 있다. 별점이 정수형태로 잘 저장이 되어있어 후처리가 필요하지 않다.
 
 2. 리뷰 길이는 중위값 Q2가 67자로, 꽤나 정성스럽게 작성된 답변이 많으며 그 원인으로 타 지도 앱들과 다르게 다이닝코드는 '음식점 리뷰'가 주된 기능을 하는 플랫폼이라는 점을 들 수 있다.
@@ -263,10 +265,12 @@
 
 ###구글맵 EDA 사진자료
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-    <img src="review_analysis/plots/googlemaps_stat.png" height="120px" width="150px">
-    <img src="review_analysis/plots/googlemaps_stat2.png" height="120px" width="150px">
-    <img src="review_analysis/plots/googlemaps_textlength.png" height="120px" width="150px">
+![구글맵스 리뷰텍스트 길이](./review_analysis/plots/googlemaps_textlength.png)
+
+![구글맵스 통계 1](./review_analysis/plots/googlemaps_stat.png)
+
+![구글맵스 통계 2](./review_analysis/plots/googlemaps_stat2.png)
+
 ---
   
 # **구글맵스 분석**
@@ -286,7 +290,7 @@
 
 1. 다이닝 코드 리뷰 처리 프로세스
 
-##1.1. 초기화 (클래스 생성자)##
+## 1.1. 초기화 (클래스 생성자)##
 
 -input_path, output_path를 상속받아 초기화.
 
@@ -296,7 +300,7 @@
 
 
 
-##1.2. 데이터 전처리 (preprocess)##
+## 1.2. 데이터 전처리 (preprocess)
 
 -CSV 파일(reviews_diningcode.csv) 로드.
 
@@ -314,7 +318,7 @@
 
 
 
-##1.3. 특징 엔지니어링 (feature_engineering)##
+## 1.3. 특징 엔지니어링 (feature_engineering)
 
 -날짜 데이터를 yyyy년 mm월 dd일 포맷에서 변환.
 
@@ -326,7 +330,7 @@
 
 
 
-##1.4. 텍스트 벡터화 (vectorize_text)##
+## 1.4. 텍스트 벡터화 (vectorize_text)
 
 -리뷰 텍스트를 토크나이징 및 패딩 처리 (max_length=128).
 
@@ -336,7 +340,7 @@
 
 
 
-##1.5. 결과 저장 (save_to_database)##
+## 1.5. 결과 저장 (save_to_database)
 
 -전처리된 데이터를 CSV 파일로 저장.
 
@@ -350,13 +354,13 @@
 
 
 
-##2.1. 초기화 (클래스 생성자)##
+##2.1. 초기화 (클래스 생성자)
 
 -다이닝 코드와 동일한 방식으로 KC-BERT 모델 및 장치 설정.
 
 
 
-##2.2. 데이터 전처리 (preprocess)##
+##2.2. 데이터 전처리 (preprocess)
 
 -CSV 파일(reviews_googlemaps.csv) 로드.
 
@@ -373,19 +377,19 @@
 
 
 
-##2.3. 특징 엔지니어링 (feature_engineering)##
+##2.3. 특징 엔지니어링 (feature_engineering)
 
 -텍스트 벡터화 수행 (KC-BERT 사용).
 
 
 
-##2.4. 텍스트 벡터화 (vectorize_text)##
+##2.4. 텍스트 벡터화 (vectorize_text)
 
 -다이닝 코드와 동일한 과정으로 텍스트 임베딩 수행.
 
 
 
-##2.5. 결과 저장 (save_to_database)##
+##2.5. 결과 저장 (save_to_database)
 
 -전처리된 데이터를 CSV 파일로 저장.
 
