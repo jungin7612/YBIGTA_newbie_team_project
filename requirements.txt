@@ -33,6 +33,7 @@ pydantic==2.10.5
 pydantic_core==2.27.2
 PySocks==1.7.1
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
 pytz==2024.2
 PyYAML==6.0.2
 regex==2024.11.6
@@ -60,5 +61,6 @@ typing_extensions==4.12.2
 tzdata==2025.1
 urllib3==2.3.0
 uvicorn==0.34.0
+webdriver-manager==4.0.2
 websocket-client==1.8.0
 wsproto==1.2.0
