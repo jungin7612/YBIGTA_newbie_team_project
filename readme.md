@@ -286,7 +286,7 @@
 
 1. 다이닝 코드 리뷰 처리 프로세스
 
-1.1. 초기화 (클래스 생성자)
+##1.1. 초기화 (클래스 생성자)##
 
 -input_path, output_path를 상속받아 초기화.
 
@@ -296,7 +296,7 @@
 
 
 
-1.2. 데이터 전처리 (preprocess)
+##1.2. 데이터 전처리 (preprocess)##
 
 -CSV 파일(reviews_diningcode.csv) 로드.
 
@@ -314,7 +314,7 @@
 
 
 
-1.3. 특징 엔지니어링 (feature_engineering)
+##1.3. 특징 엔지니어링 (feature_engineering)##
 
 -날짜 데이터를 yyyy년 mm월 dd일 포맷에서 변환.
 
@@ -326,7 +326,7 @@
 
 
 
-1.4. 텍스트 벡터화 (vectorize_text)
+##1.4. 텍스트 벡터화 (vectorize_text)##
 
 -리뷰 텍스트를 토크나이징 및 패딩 처리 (max_length=128).
 
@@ -336,7 +336,7 @@
 
 
 
-1.5. 결과 저장 (save_to_database)
+##1.5. 결과 저장 (save_to_database)##
 
 -전처리된 데이터를 CSV 파일로 저장.
 
@@ -350,13 +350,13 @@
 
 
 
-2.1. 초기화 (클래스 생성자)
+##2.1. 초기화 (클래스 생성자)##
 
 -다이닝 코드와 동일한 방식으로 KC-BERT 모델 및 장치 설정.
 
 
 
-2.2. 데이터 전처리 (preprocess)
+##2.2. 데이터 전처리 (preprocess)##
 
 -CSV 파일(reviews_googlemaps.csv) 로드.
 
@@ -373,19 +373,19 @@
 
 
 
-2.3. 특징 엔지니어링 (feature_engineering)
+##2.3. 특징 엔지니어링 (feature_engineering)##
 
 -텍스트 벡터화 수행 (KC-BERT 사용).
 
 
 
-2.4. 텍스트 벡터화 (vectorize_text)
+##2.4. 텍스트 벡터화 (vectorize_text)##
 
 -다이닝 코드와 동일한 과정으로 텍스트 임베딩 수행.
 
 
 
-2.5. 결과 저장 (save_to_database)
+##2.5. 결과 저장 (save_to_database)##
 
 -전처리된 데이터를 CSV 파일로 저장.
 
