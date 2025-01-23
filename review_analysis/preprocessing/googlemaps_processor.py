@@ -81,7 +81,7 @@ class GoogleMapsProcessor(BaseDataProcessor):
         if self.df_clean is None:
             raise ValueError("저장할 데이터가 없습니다. preprocess()를 먼저 실행하세요.")
 
-        output_file = os.path.join(self.output_path, 'preprocessed_reviews_googlemaps.csv')
+        output_file = os.path.join(self.output_dir, 'preprocessed_reviews_googlemaps.csv')
         self.df_clean.to_csv(output_file, index=False, encoding='utf-8-sig')
         print(f"데이터가 {output_file}에 저장되었습니다.")
 
