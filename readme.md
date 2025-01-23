@@ -74,3 +74,53 @@
    - `app.main:app`은 `app` 폴더 내부의 `main.py`에서 FastAPI 인스턴스가 `app`이라는 이름으로 선언되어 있음을 가정합니다.
    - `--reload`는 개발 편의를 위해 코드 변경 시 자동으로 서버를 재시작합니다.
    - `--host`와 `--port`는 원하는 IP 주소와 포트를 지정할 수 있습니다(기본은 `127.0.0.1:8000`).
+
+
+
+# NaverCrawler
+
+이 프로젝트는 네이버 리뷰 데이터를 크롤링하여 CSV 파일로 저장하는 Python 기반의 크롤링 도구입니다. Selenium과 BeautifulSoup을 활용하여 데이터 수집 및 처리 과정을 자동화합니다.
+
+---
+
+## 데이터 소개
+- **크롤링한 사이트**: [네이버 지도 리뷰 페이지](https://map.naver.com/p/entry/place/21306384?c=15.00,0,0,0,dh&placePath=/review)
+- **데이터 형식**: 
+- `content` (리뷰 내용, 문자열)
+- `date` (작성 날짜, `YYYY-MM-DD` 형식의 문자열)
+- `stars` (별점, 문자열 또는 숫자)
+- **데이터 개수**: 수집 가능한 모든 리뷰 (사이트 내 더보기 버튼을 통해 스크롤)
+
+---
+
+## 실행 방법
+
+### 1. 가상환경 설정 및 종속성 설치
+1. Python 가상환경 생성:
+   ```bash
+   python -m venv myenv
+   source myenv/bin/activate  # Windows에서는 myenv\\Scripts\\activate
+   ```
+2. 필요한 패키지 설치:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### 2. 크롤러 실행
+1. 크롤러 실행:
+   ```bash
+   python ./review_analysis/crawling/naver_crawler.py
+   ```
+2. 크롤러는 네이버 리뷰 데이터를 자동으로 수집하고 지정된 `output_dir`에 저장합니다.
+
+---
+
+## 결과물
+- **결과 파일**: `reviews_filtered.csv`
+- **파일 위치**: `output_dir` 디렉토리 (코드에서 설정 가능)
+- **데이터 샘플**:
+   ```csv
+   content,date,stars
+   "맛있어요",2023-01-01,"5"
+   "서비스가 별로에요",2023-01-02,"2"
+   ```
