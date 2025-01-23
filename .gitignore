@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+eda.py
+__init__
 # C extensions
 *.so
 
