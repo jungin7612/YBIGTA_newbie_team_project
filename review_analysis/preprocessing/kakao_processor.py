@@ -7,8 +7,28 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 import numpy as np
 
-class ExampleProcessor(BaseDataProcessor):
+class KakaoProcessor(BaseDataProcessor):
+    """
+   카카오맵 리뷰 데이터 전처리 및 특성 공학 클래스
+
+   주요 기능:
+   - 결측치 및 불필요한 리뷰 제거
+   - 데이터 정규화 및 특성 엔지니어링
+   - KcBERT 모델을 사용한 텍스트 벡터화
+
+   Args:
+       input_path (str): 입력 CSV 파일 경로
+       output_path (str): 출력 파일 저장 경로
+       model_name (str, optional): 사용할 언어 모델 이름. 기본값은 'beomi/kcbert-base'
+       max_length (int, optional): 토큰 최대 길이. 기본값은 128
+       batch_size (int, optional): 벡터화 배치 크기. 기본값은 32
+   """
     def __init__(self, input_path: str, output_path: str, model_name: str = 'beomi/kcbert-base', max_length: int = 128, batch_size: int = 32):
+        """
+        KakaoProcessor 초기화 및 모델 로드
+
+        토크나이저와 언어 모델을 로드하고, GPU 사용 가능 시 모델을 GPU로 이동
+        """
         super().__init__(input_path, output_path)
         self.output_path = output_path
         self.data = None  # pandas DataFrame을 저장할 변수
@@ -143,7 +163,13 @@ class ExampleProcessor(BaseDataProcessor):
     
     def vectorize_texts(self, texts):
         """
-        텍스트 데이터를 KcBERT를 이용하여 벡터화합니다.
+            텍스트를 KcBERT 모델을 사용하여 벡터화
+
+            Args:
+                texts (List[str]): 벡터화할 텍스트 리스트
+
+            Returns:
+                numpy.ndarray: 벡터화된 텍스트 임베딩
         """
         all_embeddings = []
         try:
@@ -170,7 +196,7 @@ class ExampleProcessor(BaseDataProcessor):
     def save_to_database(self):
         """
         전처리된 데이터를 CSV 파일로 저장:
-        - 저장 경로: ybigta/database/preprocessed_reviews_<사이트 이름>.csv
+        - 저장 경로: database/preprocessed_reviews_<사이트 이름>.csv
         """
         try:
             # 출력 파일 경로 설정

@@ -17,7 +17,30 @@ class Review(TypedDict):
     rating: float
 
 
-class ExampleCrawler:
+class KakaoCrawler:
+    """
+    카카오맵 리뷰 크롤러 클래스
+
+    이 클래스는 Selenium WebDriver를 사용하여 특정 장소의 카카오맵 리뷰를 수집합니다.
+
+    주요 기능:
+    - 헤드리스 Chrome 브라우저를 통한 리뷰 스크래이핑
+    - 동적 페이지 로딩을 위한 '더보기' 버튼 자동 클릭
+    - 리뷰 텍스트, 날짜, 평점 추출
+    - CSV 파일로 리뷰 데이터 저장
+
+    속성:
+    - base_url (str): 크롤링할 카카오맵 장소 URL
+    - driver (WebDriver): Selenium Chrome WebDriver 인스턴스
+    - output_dir (str): 크롤링된 데이터 저장 디렉토리
+    - reviews (List[Review]): 크롤링된 리뷰 목록
+
+    메서드:
+    - start_browser(): 헤드리스 Chrome 브라우저 시작
+    - scrape_reviews(): 리뷰 수집
+    - save_to_database(): 리뷰 데이터 CSV 파일로 저장
+    """
+
     def __init__(self, output_dir: str):
         self.base_url = 'https://place.map.kakao.com/1011256721'
         self.driver = None
@@ -25,9 +48,15 @@ class ExampleCrawler:
         self.reviews: List[Review] = []
 
     def start_browser(self):
+        """
+            헤드리스 Chrome 브라우저를 초기화하고 시작합니다.
+
+            Chrome WebDriver를 설정하고, GUI 없이 브라우저를 실행합니다.
+            브라우저 시작 중 오류 발생 시 예외 처리합니다.
+        """
         try:
             options = webdriver.ChromeOptions()
-            # options.add_argument('--headless')  # GUI 없이 실행
+            options.add_argument('--headless')  # GUI 없이 실행
             options.add_argument('--disable-gpu')
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-dev-shm-usage')
@@ -42,6 +71,13 @@ class ExampleCrawler:
             self.driver = None
 
     def scrape_reviews(self):
+        """
+        카카오맵 리뷰 페이지에서 리뷰를 수집합니다.
+
+        '더보기' 버튼을 최대 75회 클릭하여 모든 리뷰를 로드합니다.
+        각 리뷰에서 텍스트, 날짜, 평점을 추출하여 self.reviews에 저장합니다.
+        수집 중 발생하는 예외를 처리하고 총 수집된 리뷰 수를 로깅합니다.
+        """
         self.reviews = []  # 크롤링 전에 초기화
         try:
             if not self.driver:
@@ -123,6 +159,13 @@ class ExampleCrawler:
             print(f"스크랩된 리뷰 수: {len(self.reviews)}")
 
     def save_to_database(self):
+        """
+        수집된 리뷰 데이터를 CSV 파일로 저장합니다.
+
+        self.output_dir 경로에 'reviews_kakaomap.csv' 파일을 생성합니다.
+        리뷰가 없는 경우 저장을 건너뜁니다.
+        파일 저장 중 발생하는 예외를 처리합니다.
+        """
         if not self.reviews:
             print("No reviews to save.")
             return
