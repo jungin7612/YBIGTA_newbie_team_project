@@ -237,7 +237,7 @@
 - GPU 사용 (가능한 경우)
 - 벡터 길이: 모델 은닉층 차원
 
-=====
+---
 
 #다이닝 코드 개별 사이트 EDA
 
@@ -257,18 +257,19 @@
 
 4. 날짜가 yyyy/mm/dd 형태로 잘 저장되어있으나, 2개의 데이터가 최근 것이라 mm/dd, 그리고 몇 일 전 형식으로 저장되어있어 정확한 날짜로 인덱싱하여 전처리해주어야 한다.
 
-=====
+---
 
-#구글맵 개별 사이트 EDA/FE/분석
+# **구글맵 개별 사이트 EDA/FE/분석**
 
-##구글맵 EDA 사진자료
+###구글맵 EDA 사진자료
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
     <img src="review_analysis/plots/googlemaps_stat.png" height="120px" width="150px">
     <img src="review_analysis/plots/googlemaps_stat2.png" height="120px" width="150px">
     <img src="review_analysis/plots/googlemaps_textlength.png" height="120px" width="150px">
 ---
-#구글맵스 분석
+  
+# **구글맵스 분석**
 
 1. 별점이 NaN으로 처리되어있다. 이는 별 개수가 정수형으로 저장되어있지 않고 '별점 N개' 형식으로 저장되어있기 때문이다.
 
@@ -279,8 +280,9 @@
 4. 리뷰 길이 이상치가 4개 존재하는데, 이는 knn,svm 등 모델 훈련 과정에서 학습을 방해한다고 판단되면 지우기로 했다. 그러나 한 단어 이하의 매우 짧은 리뷰는 다이닝 코드와 마찬가지로 지운다.
 
 
----
-#다이닝 코드 FE
+----
+
+# **다이닝 코드 FE**
 
 1. 다이닝 코드 리뷰 처리 프로세스
 
@@ -342,7 +344,7 @@
 
 ---
 
-#구글맵스 FE
+# **구글맵스 FE**
 
 2. 구글맵 리뷰 처리 프로세스
 
