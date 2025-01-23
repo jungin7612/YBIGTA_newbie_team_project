@@ -18,4 +18,3 @@ class BaseCrawler(ABC):
     @abstractmethod
     def save_to_database(self):
         pass
-############################
