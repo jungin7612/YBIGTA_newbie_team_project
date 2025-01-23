@@ -17,7 +17,7 @@ class Review(TypedDict):
     rating: float
 
 
-class ExampleCrawler:
+class KakaoCrawler:
     def __init__(self, output_dir: str):
         self.base_url = 'https://place.map.kakao.com/1011256721'
         self.driver = None
