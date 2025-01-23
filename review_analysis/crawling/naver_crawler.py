@@ -42,7 +42,7 @@ class NaverCrawler(BaseCrawler):
             logger.error("Driver is not initialized. Call `start_browser()` first.")
             raise RuntimeError("Driver is not initialized. Call `start_browser()` first.")
 
-        columns: List[str] = ['content', 'date', 'stars']
+        columns: List[str] = ['text', 'date', 'rating']
         values: List[List[str]] = []
         n: int = 0
         seen_reviews: set = set()
