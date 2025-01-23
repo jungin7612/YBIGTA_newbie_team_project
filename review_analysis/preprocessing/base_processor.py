@@ -22,3 +22,5 @@ class BaseDataProcessor:
     def save_to_database(self):
         
         pass
+
+
