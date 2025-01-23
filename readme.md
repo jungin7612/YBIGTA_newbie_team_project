@@ -84,7 +84,7 @@
 ## KaKao EDA
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-   <img src="review_analysis/plots/rating_distribution.png" height="600px" width="300px">
-   <img src="review_analysis/plots/Review_text_length_dtb.png" height="600px" width="300px">
+   <img src="review_analysis/plots/rating_distribution.png" height="300px" width="600px">
+   <img src="review_analysis/plots/reivew_text_length_dtb.png" height="300px" width="600px">
 </div>
-<img src="review_analysis/plots/outlier.png" height="1076 px" width="256px">
+<img src="review_analysis/plots/outlier.png" height="256 px" width="1076px">
