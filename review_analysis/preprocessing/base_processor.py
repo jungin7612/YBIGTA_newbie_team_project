@@ -14,7 +14,13 @@ class BaseDataProcessor:
         pass
 
     @abstractmethod
+    def vectorize_text(self, text_series):
+        """텍스트 데이터를 벡터화하는 메서드 (하위 클래스에서 구현)"""
+        pass
+    
+    @abstractmethod
     def save_to_database(self):
         
         pass
+
 

@@ -1,14 +1,17 @@
-
 from argparse import ArgumentParser
 from typing import Dict, Type
 from review_analysis.crawling.base_crawler import BaseCrawler
 from review_analysis.crawling.naver_crawler import NaverCrawler
 from review_analysis.crawling.kakao_crawler import KakaoCrawler
+from review_analysis.crawling.googlemaps_crawler import GoogleMapsCrawler
+from review_analysis.crawling.diningcode_crawler import DiningCodeCrawler
 
 # 모든 크롤링 클래스를 예시 형식으로 적어주세요.
 CRAWLER_CLASSES: Dict[str, Type[BaseCrawler]] = {
     "Naver": NaverCrawler,
     "kakao": KakaoCrawler,
+    "googlemaps": GoogleMapsCrawler,
+    "diningcode": DiningCodeCrawler,
 }
 
 
@@ -44,3 +47,4 @@ if __name__ == "__main__":
 
     else:
         raise ValueError("No crawlers.")
+
