@@ -11,11 +11,13 @@ import pandas as pd
 import time
 import os
 
+from typing import List, Dict
+
 class DiningCodeCrawler(BaseCrawler):
     def __init__(self, output_dir: str):
         super().__init__(output_dir)
         self.base_url = 'https://www.diningcode.com/profile.php?rid=ZKUECqHgsTki'
-        self.reviews_data = []
+        self.reviews_data: List[Dict[str, str]] = []
 
     def start_browser(self):
         """브라우저 시작 및 URL 접속"""

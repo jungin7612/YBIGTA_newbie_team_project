@@ -11,11 +11,13 @@ import pandas as pd
 import time
 import os
 
+from typing import List, Dict
+
 class GoogleMapsCrawler(BaseCrawler):
     def __init__(self, output_dir: str):
         super().__init__(output_dir)
         self.base_url = 'https://www.google.com/maps/place/%ED%8C%8C%EC%9D%B4%ED%99%80/data=!4m18!1m9!3m8!1s0x357c98949e1b2c2f:0x3d05b9bcbf909f3!2z7YyM7J207ZmA!8m2!3d37.5570004!4d126.9350473!9m1!1b1!16s%2Fg%2F1hc4q16_8!3m7!1s0x357c98949e1b2c2f:0x3d05b9bcbf909f3!8m2!3d37.5570004!4d126.9350473!9m1!1b1!16s%2Fg%2F1hc4q16_8?hl=ko&entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D'
-        self.reviews_data = []
+        self.reviews_data: List[Dict[str, str]] = []
 
     def start_browser(self):
         """브라우저 시작 및 URL 접속"""
