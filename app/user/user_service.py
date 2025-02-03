@@ -48,26 +48,26 @@ class UserService:
         
         
     def register_user(self, new_user: User) -> User:
-            """
-            새로운 사용자를 등록합니다.
+        """
+        새로운 사용자를 등록합니다.
 
-            Args:
-                new_user (User): 등록하려는 사용자 객체. 이메일(email), 비밀번호(password), 사용자 이름(username) 등을 포함.
+        Args:
+            new_user (User): 등록하려는 사용자 객체. 이메일(email), 비밀번호(password), 사용자 이름(username) 등을 포함.
 
-            Returns:
-                User: 등록된 사용자 객체.
+        Returns:
+            User: 등록된 사용자 객체.
 
-            Raises:
-                ValueError: 사용자가 이미 존재하는 경우 ("User already exists").
-            """
-            # 이미 존재하는 사용자 확인
-            if self.repo.get_user_by_email(new_user.email):
-                raise ValueError("User already exists")
+        Raises:
+            ValueError: 사용자가 이미 존재하는 경우 ("User already exists").
+        """
+        # 이미 존재하는 사용자 확인
+        if self.repo.get_user_by_email(new_user.email):
+            raise ValueError("User already exists")
 
-            # 사용자 저장
-            self.repo.save_user(new_user)
+        # 사용자 저장
+        self.repo.save_user(new_user)
 
-            return new_user
+        return new_user
 
     def delete_user(self, email: str) -> User:
         """
