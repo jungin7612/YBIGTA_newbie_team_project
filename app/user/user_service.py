@@ -1,6 +1,8 @@
 from app.user.user_repository import UserRepository
 from app.user.user_schema import User, UserLogin, UserUpdate
 from typing import List, Dict,Optional
+from sqlalchemy.orm import Session
+from fastapi import HTTPException
 
 
 class UserService:
@@ -22,22 +24,18 @@ class UserService:
             ValueError: 비밀번호가 잘못된 경우 ("Invalid password").
         """
         # 사용자 데이터 로드
-        users_list: Dict[str, Dict[str, str]] = self.repo._load_users()
+        existing_user = self.repo.get_user_by_email(user_login.email)
 
         # 이메일 및 비밀번호 확인 플래그
         email_signal: bool = False
         pw_signal: bool = False
 
-        # 사용자 검색
-        for user in users_list.values():  # users_list는 딕셔너리 형태로 로드됩니다
-            if user["email"] == user_login.email and user["password"] != user_login.password:
-                email_signal = True
-            if user["email"] == user_login.email and user["password"] == user_login.password:
-                email_signal = True
+        if existing_user:
+            email_signal = True
+            if existing_user.password == user_login.password:  # 기존 검증 방식 유지
                 pw_signal = True
-                # User 객체 생성 및 반환
-                return User(email=user["email"], password=user["password"], username=user["username"])
-
+                return User(email=existing_user.email, password=existing_user.password, username=existing_user.username)
+        
         # 이메일 또는 비밀번호가 일치하지 않을 경우 예외 처리
         if not email_signal:
             raise ValueError("User not found")

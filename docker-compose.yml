@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .         # 프로젝트 루트 디렉토리를 빌드 컨텍스트로 설정
-      dockerfile: app/Dockerfile  # Dockerfile은 여전히 app 폴더에 위치
+      dockerfile: ./dockerfile  # Dockerfile은 여전히 app 폴더에 위치
     container_name: fastapi_app
     ports:
       - "8000:8000"

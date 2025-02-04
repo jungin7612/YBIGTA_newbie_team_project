@@ -17,9 +17,13 @@ RUN python3 -m venv venv
 COPY requirements.txt .
 
 # 가상환경 활성화 후 패키지 설치
-RUN . venv/bin/activate && \
-    pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# RUN . venv/bin/activate && \
+#     pip install --upgrade pip && \
+#     pip install --no-cache-dir -r requirements.txt
+
+RUN /app/venv/bin/pip install --upgrade pip && \
+    /app/venv/bin/pip install --no-cache-dir -r requirements.txt
+
 
 # 애플리케이션 전체 복사
 COPY . .
