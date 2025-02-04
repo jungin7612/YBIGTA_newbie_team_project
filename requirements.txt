@@ -63,3 +63,6 @@ uvicorn==0.22.0
 webdriver-manager==3.8.6
 websocket-client==1.5.1
 wsproto==1.2.0
+sqlalchemy
+pymysql
+cryptography
