@@ -21,7 +21,8 @@ services:
       COLLECTION_2: ${COLLECTION_2}
       COLLECTION_3: ${COLLECTION_3}
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # MySQL이 완전히 실행된 후 FastAPI 실행
     networks:
       - shared_network
 
@@ -38,7 +39,11 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - shared_network
-    # 외부 포트 노출은 필요시 추가
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
 
 volumes:
   db_data:
