@@ -38,6 +38,8 @@ from database.mysql_connection import SessionLocal
 from app.user.user_schema import User  # 기존 Pydantic 모델 사용
 from sqlalchemy.sql import text
 import logging
+from fastapi import HTTPException
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -60,7 +62,7 @@ class UserRepository:
             # 🔥 결과가 없을 때 처리
             if result is None:
                 logger.info("No result")
-                raise HTTPException(status_code=404, detail="User not found")
+                return None
 
             # 🔥 결과를 확인하고 반환
             return User(username=result[0], email=result[1], password=result[2])
@@ -69,10 +71,6 @@ class UserRepository:
             logger.info("Error during database query")
             raise HTTPException(status_code=500, detail="Database query failed")
 
-        except Exception as e:
-            # 🔥 예외 발생 시 명확한 오류 메시지 출력
-            logger.error(f"Error during database query: {e}")
-            raise HTTPException(status_code=500, detail="Database query failed")
 
     def save_user(self, user: User) -> User:
         """ 유저가 존재하면 비밀번호를 업데이트하고, 없으면 새로 저장 """

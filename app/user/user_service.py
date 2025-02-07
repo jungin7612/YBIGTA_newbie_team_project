@@ -103,10 +103,9 @@ class UserService:
         Raises:
             ValueError: 지정된 이메일의 사용자가 존재하지 않을 경우.
         """
-        users_list = self.repo._load_users()
-        if user_update.email not in users_list:
-            raise ValueError("User not Found")
         user = self.repo.get_user_by_email(user_update.email)
+        if not user:
+            raise ValueError("User not Found")
         user.password = user_update.new_password
         self.repo.save_user(user)
         updated_user = self.repo.get_user_by_email(user_update.email)
